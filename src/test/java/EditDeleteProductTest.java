@@ -1,4 +1,4 @@
-import grubleTest.pages.HomePage;
+import grubleTest.pages.Home;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,18 +13,18 @@ public class EditDeleteProductTest {
 
     @BeforeMethod
     public void givenOnHomePageWithTestProductExist(){
-        HomePage.open(baseUrl);
-        HomePage.ensureHasProduct(PRODUCT_NAME, PRODUCT_PATH);
-        HomePage.ensureHasNoProduct(EDITED_PRODUCT_NAME);
+        Home.open(baseUrl);
+        Home.ensureHasProduct(PRODUCT_NAME, PRODUCT_PATH);
+        Home.ensureHasNoProduct(EDITED_PRODUCT_NAME);
     }
 
     @Test
     public void testProductCanBeEdited(){
-        HomePage.editProduct(PRODUCT_NAME, EDITED_PRODUCT_NAME);
+        Home.editProduct(PRODUCT_NAME, EDITED_PRODUCT_NAME);
     }
 
     @Test
     public void testProductCanBeDeleted(){
-        HomePage.deleteProduct(PRODUCT_NAME);
+        Home.deleteProduct(PRODUCT_NAME);
     }
 }

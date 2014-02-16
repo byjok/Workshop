@@ -1,9 +1,12 @@
 package grubleTest.pages;
 
+import static com.codeborne.selenide.Selectors.byText;
 import  static com.codeborne.selenide.Selenide.*;
 
 import static com.codeborne.selenide.Condition.*;
 import com.codeborne.selenide.SelenideElement;
+import grubleTest.Resources.TestConfig;
+import grubleTest.loadablecomponents.TestTablePageGetter;
 import grubleTest.widgets.*;
 
 /**
@@ -11,10 +14,12 @@ import grubleTest.widgets.*;
  */
 public class TestTablesPage {
 
-    public static void open(String baseUrl) {
-        open(baseUrl);
+    public static void open() {
+        Product.testTablesItem().click();
     }
-
+    public static TestTablePageGetter page(String productName){
+        return new TestTablePageGetter(Product.page(productName));
+    }
     public static SelenideElement addCategoryButton(){
         return $("#btn-add-category");
     }
@@ -57,6 +62,13 @@ public class TestTablesPage {
     public static void ensureHasNoCategory(String categoryName){
         if (Tree.treeItem(categoryName).isDisplayed()){
             TestTablesPage.deleteCategory(categoryName);
+        }
+    }
+
+    public static void ensureHasTable(String tableName, String categoryName){
+        Tree.treeItem(categoryName).click();
+        if (!Tree.treeItem(tableName).isDisplayed()){
+             TestTablesPage.addTable(tableName, categoryName);
         }
     }
 
