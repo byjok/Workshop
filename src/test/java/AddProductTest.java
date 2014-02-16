@@ -1,4 +1,5 @@
-import grubleTest.Resources.TestData;
+import static grubleTest.Resources.TestConfig.baseUrl;
+import static grubleTest.Resources.TestData.*;
 import grubleTest.pages.HomePage;
 import org.testng.annotations.*;
 
@@ -6,19 +7,11 @@ import org.testng.annotations.*;
  * Created by rkovalchuk on 2/15/14.
  */
 public class AddProductTest {
-String productName = TestData.productName;
-String productPath = TestData.productPath;
 
-    //@Test
-    //public void testProductCanBeAdded() {
-        //HomePage.open("http://localhost:8123/");
-        //HomePage.addProduct(productName,productPath);
-
-    //}
     @Test
-    public void testProductCanBeAddedAndDeleted(){
-        HomePage.open("http://localhost:8123/");
-        HomePage.addProduct(productName,productPath);
-        HomePage.deleteProduct(productName);
+    public void testProductCanBeAdded(){
+        HomePage.open(baseUrl);
+        HomePage.ensureHasNoProduct(PRODUCT_NAME);
+        HomePage.addProduct(PRODUCT_NAME, PRODUCT_PATH);
     }
 }
